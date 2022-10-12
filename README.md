@@ -17,6 +17,7 @@
 
 	<p> <b> FAQS: </b> </p>
 		<ol type="1">
+			
 			<li> <b> What happens if my app freezes while im using it?</b> </li> <sup> close out app and reopen it </sup> 
 
 			<li> <b> What does the GEO Loctaion button do ?</b> </li> <sup> it allows you to find groups based off of your general location </sup>
@@ -25,7 +26,7 @@
 
 			<li> <b> What if i forget my password?</b> </li> <sup>  Go to login screen and clicl forgot password and follow the instructions sent to your email</sup>
 
-			<li> <b> How do i add a memember to a group?</li> 
+			<li> <b> How do i add a memember to a group?</li> <sup> you can add a user by using there phone number or sedning out a link through the group </sup>
 		</ol>
 
 	</body>

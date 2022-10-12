@@ -26,7 +26,7 @@
 
 			<li> <b> What if i forget my password?</b> </li> <sup>  Go to login screen and clicl forgot password and follow the instructions sent to your email</sup>
 
-			<li> <b> How do i add a memember to a group?</li> <sup> you can add a user by using there phone number or sedning out a link through the group </sup>
+			<li> <b> How do i add a memember to a group? </b> </li> <sup> you can add a user by using there phone number or sedning out a link through the group </sup>
 		</ol>
 
 	</body>

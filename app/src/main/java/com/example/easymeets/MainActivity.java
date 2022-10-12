@@ -1,10 +1,7 @@
 package com.example.easymeets;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import com.example.easymeets.DAO.UserDAO;
-import com.example.easymeets.database.AppDatabase;
 import com.example.easymeets.entities.Group;
 import com.example.easymeets.entities.User;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -14,7 +11,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.room.Room;
 
 import com.example.easymeets.databinding.ActivityMainBinding;
 
@@ -25,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -41,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
 
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class,"UserDatabase").build();
-        UserDAO userDao = db.userDao();
 
         ArrayList<String> L = new ArrayList<String>();
         L.add("TestTopic");

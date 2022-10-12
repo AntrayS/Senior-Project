@@ -24,4 +24,6 @@ public interface UserDAO {
     public Completable insertUser(User user);
     @Delete
     public Completable deleteUser(User user);
+    @Query("SELECT * FROM users WHERE users.username = :username AND users.username = :password")
+    public Single<User> getByNameAndPass(String username, String password);
 }

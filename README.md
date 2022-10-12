@@ -13,7 +13,7 @@
 
 		</p>
 
-		<a href="" target="_blank">LINK TO APP </a>
+		<a href="https://github.com/AntrayS/Senior-Project" target="_blank">LINK TO APP </a>
 
 	<p> <b> FAQS: </b> </p>
 		<ol type="1">

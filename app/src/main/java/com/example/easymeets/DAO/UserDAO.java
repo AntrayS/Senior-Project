@@ -9,16 +9,19 @@ import com.example.easymeets.entities.User;
 
 import java.util.List;
 
+import io.reactivex.rxjava3.core.Completable;
+import io.reactivex.rxjava3.core.Single;
+
 @Dao
 public interface UserDAO {
-    @Query("SELECT * FROM User")
-    List<User> getAll();
-    @Query("SELECT * FROM User WHERE User.userId = :id")
-    User getByID(long id);
-    @Query("SELECT * FROM User WHERE User.username = :username")
-    User getByName(String username);
+    @Query("SELECT * FROM users")
+    public Single<List<User>> getAll();
+    @Query("SELECT * FROM users WHERE users.userId = :id")
+    public Single<User> getByID(long id);
+    @Query("SELECT * FROM users WHERE users.username = :username")
+    public Single<User> getByName(String username);
     @Insert
-    void insertUser(User user);
+    public Completable insertUser(User user);
     @Delete
-    void deleteUser(User user);
+    public Completable deleteUser(User user);
 }

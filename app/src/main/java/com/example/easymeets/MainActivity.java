@@ -2,7 +2,6 @@ package com.example.easymeets;
 
 import android.content.Intent;
 import android.os.Bundle;
-<<<<<<< Updated upstream
 
 import com.example.easymeets.entities.Group;
 import com.example.easymeets.entities.User;
@@ -17,13 +16,12 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.easymeets.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
-=======
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
->>>>>>> Stashed changes
+
 
 import com.example.easymeets.R;
 import com.example.easymeets.ui.login.LoginActivity;
@@ -42,14 +40,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button button5 = findViewById(R.id.button5);
 
 
-<<<<<<< Updated upstream
-=======
+
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
         button3.setOnClickListener(this);
         button4.setOnClickListener(this);
         button5.setOnClickListener(this);
->>>>>>> Stashed changes
+
 
 
 

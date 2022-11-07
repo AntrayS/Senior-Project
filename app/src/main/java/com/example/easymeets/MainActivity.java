@@ -1,6 +1,8 @@
 package com.example.easymeets;
 
+import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< Updated upstream
 
 import com.example.easymeets.entities.Group;
 import com.example.easymeets.entities.User;
@@ -15,36 +17,77 @@ import androidx.navigation.ui.NavigationUI;
 import com.example.easymeets.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
+=======
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import androidx.appcompat.app.AppCompatActivity;
+>>>>>>> Stashed changes
 
-    private ActivityMainBinding binding;
+import com.example.easymeets.R;
+import com.example.easymeets.ui.login.LoginActivity;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+        Button button1 = findViewById(R.id.button1);
+        Button button2 = findViewById(R.id.button2);
+        Button button3 = findViewById(R.id.button3);
+        Button button4 = findViewById(R.id.button4);
+        Button button5 = findViewById(R.id.button5);
 
 
-        ArrayList<String> L = new ArrayList<String>();
-        L.add("TestTopic");
+<<<<<<< Updated upstream
+=======
+        button1.setOnClickListener(this);
+        button2.setOnClickListener(this);
+        button3.setOnClickListener(this);
+        button4.setOnClickListener(this);
+        button5.setOnClickListener(this);
+>>>>>>> Stashed changes
 
-        Group group1 = new Group("TestGroup", L);
-        Group group2 = new Group("TestGroup2",L);
 
-        User user = new User("User","Pass");
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+
+            case R.id.button1:
+                Toast.makeText(this, "EXIT  clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.button2:
+                switchToGeo();
+                break;
+            case R.id.button3:
+                switchToGroup();
+                break;
+            case R.id.button4:
+                Toast.makeText(this, "HOME  clicked", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.button5:
+                switchToCalendar();
+                break;
+
+        }
+    }
+
+    private void switchToCalendar(){
+        Intent switchActivityIntent = new Intent(this,CalendarActivity.class);
+        startActivity(switchActivityIntent);
+    }
+    private void switchToGeo(){
+        Intent switchActivityIntent = new Intent(this,MapsActivity2.class);
+        startActivity(switchActivityIntent);
+    }
+    private void switchToGroup(){
+        Intent switchActivityIntent = new Intent(this, LoginActivity.class);
+        startActivity(switchActivityIntent);
     }
 }

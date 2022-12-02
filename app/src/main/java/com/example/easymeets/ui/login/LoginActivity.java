@@ -23,10 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.easymeets.GRoupActivity2;
-import com.example.easymeets.R;
-import com.example.easymeets.ui.login.LoginViewModel;
-import com.example.easymeets.ui.login.LoginViewModelFactory;
+import com.example.easymeets.Activities.GRoupActivity2;
 import com.example.easymeets.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {

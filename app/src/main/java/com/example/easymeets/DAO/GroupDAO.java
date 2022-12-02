@@ -17,7 +17,11 @@ public interface GroupDAO {
     @Query("SELECT * FROM groups")
     public Single<List<Group>> getAll();
     @Query("SELECT * FROM groups WHERE groups.id = :id")
-    public Single<Group> getByID(long id);
+    public Group getByID(long id);
+    @Query("SELECT * FROM groups WHERE groups.name = :name")
+    public Group getByName(String name);
+    @Query("SELECT * FROM groups WHERE groups.topic = :topic")
+    public Group getByID(String topic);
     @Insert
     public Completable addGroup(Group group);
     @Delete

@@ -1,38 +1,28 @@
-package com.example.easymeets;
+package com.example.easymeets.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.easymeets.entities.Group;
-import com.example.easymeets.entities.User;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
+import androidx.room.Room;
 
-import com.example.easymeets.databinding.ActivityMainBinding;
-
-import java.util.ArrayList;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-
+import com.example.easymeets.DAO.GroupDAO;
+import com.example.easymeets.DAO.UserDAO;
 import com.example.easymeets.R;
-import com.example.easymeets.ui.login.LoginActivity;
+import com.example.easymeets.database.AppDatabase;
+import com.example.easymeets.entities.User;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
+public static User activeUser;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Button button1 = findViewById(R.id.button1);
         Button button2 = findViewById(R.id.button2);
         Button button3 = findViewById(R.id.button3);

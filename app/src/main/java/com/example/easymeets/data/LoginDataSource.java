@@ -1,6 +1,7 @@
 package com.example.easymeets.data;
 
 import com.example.easymeets.data.model.LoggedInUser;
+import com.example.easymeets.DAO.UserDAO;
 
 import java.io.IOException;
 
@@ -10,9 +11,9 @@ import java.io.IOException;
 public class LoginDataSource {
 
     public Result<LoggedInUser> login(String username, String password) {
-
         try {
             // TODO: handle loggedInUser authentication
+
             LoggedInUser fakeUser =
                     new LoggedInUser(
                             java.util.UUID.randomUUID().toString(),

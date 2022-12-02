@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".GroupView">
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/Name"
+        android:text="GroupName" />
+
+    <TextView
+        android:id="@+id/Topic"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Name"
+        android:layout_marginTop="1dp"
+        android:text="GroupTopic" />
+    <TextView
+        android:id="@+id/Distance"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Topic"
+        android:text="distance away"/>
+
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="64dp"
+        android:layout_toRightOf="@+id/Name"
+        android:text="Join"
+        android:id="@+id/Join"
+        android:textSize="12sp"/>
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="64dp"
+        android:layout_toRightOf="@+id/Join"
+        android:text="Enter"
+        android:id="@+id/Leave"
+        android:textSize="12sp"/>
+</RelativeLayout>

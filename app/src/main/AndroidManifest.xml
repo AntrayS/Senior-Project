@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION">
-    </uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
+        android:enableOnBackInvokedCallback="true"
         android:allowBackup="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -16,11 +16,31 @@
         android:theme="@style/Theme.EasyMeets"
         tools:targetApi="31">
         <activity
-            android:name=".ui.login.LoginActivity"
+            android:name=".GroupCreate"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".UserActivity"
+            android:exported="false"
+            android:label="@string/title_activity_user"
+            android:theme="@style/Theme.EasyMeets.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Activities.LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".GRoupActivity2"
+            android:name=".Activities.GroupCreateActivity"
+            android:exported="false"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".Activities.GRoupActivity2"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -42,11 +62,11 @@
             android:value="YOUR_API_KEY" />
 
         <activity
-            android:name=".MapsActivity2"
+            android:name=".Activities.MapsActivity2"
             android:exported="false"
             android:label="@string/title_activity_maps2" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -59,7 +79,8 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".CalendarActivity" />
+        <activity android:name=".Activities.CalendarActivity" />
+
     </application>
 
 </manifest>

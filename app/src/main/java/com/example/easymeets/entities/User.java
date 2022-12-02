@@ -9,22 +9,25 @@ import java.util.ArrayList;
 
 @Entity(tableName="users")
 public class User {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "userId")
     private long userId;
     @ColumnInfo(name = "username")
     private String username;
     @ColumnInfo(name="password")
     private String password;
-//    @ColumnInfo(name = "profilePic")
-//    private Image profilePic;
+    @ColumnInfo(name="bio")
+    private String bio;
 
     @Embedded
     private ArrayList<Group> groups;
     public User(String username, String password){
-        this.username = username;
+        this.setUsername(username);
         this.password = password;
         groups = new ArrayList<Group>();
+    }
+    public User(){
+
     }
     public long getUserId(){return userId;}
 
@@ -72,7 +75,7 @@ public class User {
 
     @Override
     public String toString(){
-        String s = username;
+        String s = getUsername();
         for(int i = 0; i < groups.size();i++){
             s += " " + groups.get(i).getGroupName();
         }
@@ -80,5 +83,15 @@ public class User {
     }
 
 
+    public String getBio() {
+        return bio;
+    }
 
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

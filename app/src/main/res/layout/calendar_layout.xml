@@ -25,6 +25,7 @@
             android:gravity="center"
             android:layout_marginTop="4dp"
             android:text="CurrentDate"
+            android:id="@+id/currentDate"
             android:textColor="@android:color/white"
             android:textStyle="bold"
             android:textSize="18sp"
@@ -120,7 +121,7 @@
     <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/gridview"
+        android:id="@+id/gridView"
         android:numColumns="7"> </GridView>
 
 </LinearLayout>

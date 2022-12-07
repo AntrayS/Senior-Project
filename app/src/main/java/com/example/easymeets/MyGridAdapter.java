@@ -1,4 +1,4 @@
-package com.example.easymeets.ui;
+package com.example.easymeets;
 
 import android.content.Context;
 import android.graphics.Color;

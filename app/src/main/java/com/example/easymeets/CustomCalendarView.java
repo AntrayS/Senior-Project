@@ -2,6 +2,7 @@ package com.example.easymeets;
 
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.AttributeSet;
@@ -29,9 +30,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.easymeets.ui.EventRecyclerAdapter;
-import com.example.easymeets.ui.MyGridAdapter;
 
 public class CustomCalendarView extends LinearLayout {
     ImageButton NextButton;
@@ -149,6 +147,12 @@ public class CustomCalendarView extends LinearLayout {
                 builder.setView(showView);
                 alertDialog = builder.create();
                 alertDialog.show();
+                alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    @Override
+                    public void onCancel(DialogInterface dialogInterface) {
+                        SetUpCalendar();
+                    }
+                });
 
                 return true;
             }

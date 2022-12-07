@@ -45,13 +45,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:paddingTop="4dp"
-        android:background="@color/design_default_color_primary_dark">
+        android:background="@color/colorEasyMeets">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Sun"
-            android:background="@android:color/holo_blue_dark"
+            android:background="@color/design_default_color_primary_dark"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
             android:textStyle="bold"
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Wed"
-            android:background="@android:color/holo_purple"
+            android:background="@android:color/holo_red_light"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
             android:textStyle="bold"
@@ -91,7 +91,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Thu"
-            android:background="@android:color/holo_blue_dark"
+            android:background="@android:color/holo_purple"
             android:layout_marginTop="4dp"
             android:layout_weight="1"
             android:textStyle="bold"

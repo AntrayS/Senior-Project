@@ -2,6 +2,7 @@ package com.example.easymeets;
 
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -26,7 +27,10 @@ import java.util.TimeZone;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.easymeets.ui.EventRecyclerAdapter;
 import com.example.easymeets.ui.MyGridAdapter;
 
 public class CustomCalendarView extends LinearLayout {
@@ -40,6 +44,7 @@ public class CustomCalendarView extends LinearLayout {
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy", Locale.ENGLISH);
     SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM", Locale.ENGLISH);
     SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.ENGLISH);
+    SimpleDateFormat eventDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
     MyGridAdapter myGridAdapter;
     AlertDialog alertDialog;
@@ -98,17 +103,17 @@ public class CustomCalendarView extends LinearLayout {
                                         c.set(Calendar.HOUR_OF_DAY, hourOfDay);
                                         c.set(Calendar.MINUTE, minute);
                                         c.setTimeZone(TimeZone.getDefault());
-                                        SimpleDateFormat hformate = new SimpleDateFormat("k:mm a", Locale.ENGLISH);
-                                        String event_Time = hformate.format(c.getTime());
+                                        SimpleDateFormat hformat = new SimpleDateFormat("k:mm a", Locale.ENGLISH);
+                                        String event_Time = hformat.format(c.getTime());
                                         EventTime.setText(event_Time);
                                     }
                                 }, hours, minute, false);
                         timePickerDialog.show();
                     }
                 });
-                String date = dateFormat.format(dates.get(position));
-                String month = monthFormat.format(dates.get(position));
-                String year = yearFormat.format(dates.get(position));
+                final String date = eventDateFormat.format(dates.get(position));
+                final String month = monthFormat.format(dates.get(position));
+                final String year = yearFormat.format(dates.get(position));
 
                 AddEvent.setOnClickListener(new OnClickListener() {
                     @Override
@@ -124,6 +129,50 @@ public class CustomCalendarView extends LinearLayout {
                 alertDialog.show();
             }
         });
+
+        gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                String date = eventDateFormat.format(dates.get(position));
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setCancelable(true);
+                View showView = LayoutInflater.from(parent.getContext()).inflate(R.layout.show_events_layout, null);
+                RecyclerView recyclerView = showView.findViewById(R.id.EventsRV);
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(showView.getContext());
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setHasFixedSize(true);
+                EventRecyclerAdapter eventRecyclerAdapter = new EventRecyclerAdapter(showView.getContext(), CollectEventByDate(date));
+                recyclerView.setAdapter(eventRecyclerAdapter);
+                eventRecyclerAdapter.notifyDataSetChanged();
+
+                builder.setView(showView);
+                alertDialog = builder.create();
+                alertDialog.show();
+
+                return true;
+            }
+        });
+    }
+
+    private ArrayList<Events> CollectEventByDate (String date) {
+        ArrayList<Events> arrayList = new ArrayList<>();
+        dbOpenHelper = new DBOpenHelper(context);
+        SQLiteDatabase database = dbOpenHelper.getReadableDatabase();
+        Cursor cursor = dbOpenHelper.ReadEvents(date, database);
+        while(cursor.moveToNext()) {
+            String event = cursor.getString(cursor.getColumnIndexOrThrow(DBStructure.EVENT));
+            String time = cursor.getString(cursor.getColumnIndexOrThrow(DBStructure.TIME));
+            String Date = cursor.getString(cursor.getColumnIndexOrThrow(DBStructure.DATE));
+            String Month = cursor.getString(cursor.getColumnIndexOrThrow(DBStructure.MONTH));
+            String Year = cursor.getString(cursor.getColumnIndexOrThrow(DBStructure.YEAR));
+            Events events = new Events(event, time, Date, Month, Year);
+            arrayList.add(events);
+        }
+        cursor.close();
+        dbOpenHelper.close();
+
+        return arrayList;
     }
 
     public CustomCalendarView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
@@ -153,8 +202,9 @@ public class CustomCalendarView extends LinearLayout {
         dates.clear();
         Calendar monthCalendar = (Calendar) calendar.clone();
         monthCalendar.set(Calendar.DAY_OF_MONTH, 1);
-        int firstDayOfMonth = monthCalendar.get(Calendar.DAY_OF_WEEK)-1;
+        int firstDayOfMonth = monthCalendar.get(Calendar.DAY_OF_WEEK) - 1;
         monthCalendar.add(Calendar.DAY_OF_MONTH, -firstDayOfMonth);
+        CollectEventsPerMonth(monthFormat.format(calendar.getTime()), yearFormat.format(calendar.getTime()));
 
         while (dates.size() < MAX_CALENDAR_DAYS){
             dates.add(monthCalendar.getTime());
@@ -164,5 +214,23 @@ public class CustomCalendarView extends LinearLayout {
         myGridAdapter = new MyGridAdapter(context, dates, calendar, eventsList);
         gridView.setAdapter(myGridAdapter);
 
+    }
+
+    private void CollectEventsPerMonth(String month, String year) {
+        eventsList.clear();
+        dbOpenHelper = new DBOpenHelper(context);
+        SQLiteDatabase database = dbOpenHelper.getReadableDatabase();
+        Cursor cursor = dbOpenHelper.ReadEventsPerMonth(month, year, database);
+        while (cursor.moveToNext()) {
+            String event = cursor.getString(cursor.getColumnIndexOrThrow(DBStructure.EVENT));
+            String time = cursor.getString(cursor.getColumnIndexOrThrow(DBStructure.TIME));
+            String date = cursor.getString(cursor.getColumnIndexOrThrow(DBStructure.DATE));
+            String Month = cursor.getString(cursor.getColumnIndexOrThrow(DBStructure.MONTH));
+            String Year = cursor.getString(cursor.getColumnIndexOrThrow(DBStructure.YEAR));
+            Events events = new Events(event, time, date, Month, Year);
+            eventsList.add(events);
+        }
+        cursor.close();
+        dbOpenHelper.close();
     }
 }

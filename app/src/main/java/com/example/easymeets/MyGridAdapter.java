@@ -19,9 +19,6 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.easymeets.Events;
-import com.example.easymeets.R;
-
 public class MyGridAdapter extends ArrayAdapter {
     List<Date> dates;
     Calendar currentDate;

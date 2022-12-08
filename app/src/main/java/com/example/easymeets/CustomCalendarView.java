@@ -61,20 +61,14 @@ public class CustomCalendarView extends LinearLayout {
         InitializeLayout();
         SetUpCalendar();
 
-        previousButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        previousButton.setOnClickListener((v) -> {
                 calendar.add(Calendar.MONTH, -1);
                 SetUpCalendar();
-            }
         });
 
-        nextButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        nextButton.setOnClickListener((v) -> {
                 calendar.add(Calendar.MONTH, 1);
                 SetUpCalendar();
-            }
         });
 
         gridView.setOnItemClickListener (new AdapterView.OnItemClickListener() {
@@ -186,7 +180,7 @@ public class CustomCalendarView extends LinearLayout {
     private void SaveEvents(String event, String time, String date, String month, String year) {
         dbOpenHelper = new DBOpenHelper(context);
         SQLiteDatabase database = dbOpenHelper.getWritableDatabase();
-        dbOpenHelper.SaveEvent (event, time, date, month, year, database);
+        dbOpenHelper.SaveEvent(event, time, date, month, year, database);
         dbOpenHelper.close();
         Toast.makeText(context, "Event Saved", Toast.LENGTH_SHORT).show();
     }

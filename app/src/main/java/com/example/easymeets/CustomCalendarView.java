@@ -32,9 +32,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class CustomCalendarView extends LinearLayout {
-    ImageButton NextButton;
-    ImageButton PreviousButton;
-    TextView CurrentDate;
+    ImageButton nextButton;
+    ImageButton previousButton;
+    TextView currentDate;
     GridView gridView;
     private static final int MAX_CALENDAR_DAYS = 42;
     Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
@@ -61,7 +61,7 @@ public class CustomCalendarView extends LinearLayout {
         InitializeLayout();
         SetUpCalendar();
 
-        PreviousButton.setOnClickListener(new OnClickListener() {
+        previousButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 calendar.add(Calendar.MONTH, -1);
@@ -69,7 +69,7 @@ public class CustomCalendarView extends LinearLayout {
             }
         });
 
-        NextButton.setOnClickListener(new OnClickListener() {
+        nextButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 calendar.add(Calendar.MONTH, 1);
@@ -194,15 +194,15 @@ public class CustomCalendarView extends LinearLayout {
     private void InitializeLayout() {
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.calendar_layout, this);
-        NextButton = view.findViewById(R.id.nextBtn);
-        PreviousButton = view.findViewById(R.id.previousBtn);
-        CurrentDate = view.findViewById(R.id.currentDate);
-        CurrentDate = view.findViewById(R.id.gridView);
+        nextButton = view.findViewById(R.id.nextBtn);
+        previousButton = view.findViewById(R.id.previousBtn);
+        currentDate = view.findViewById(R.id.currentDate);
+        gridView = view.findViewById(R.id.gridView);
     }
 
     private void SetUpCalendar() {
-        String currentDate = dateFormat.format(calendar.getTime());
-        CurrentDate.setText(currentDate);
+        String todayDate = dateFormat.format(calendar.getTime());
+        currentDate.setText(todayDate);
         dates.clear();
         Calendar monthCalendar = (Calendar) calendar.clone();
         monthCalendar.set(Calendar.DAY_OF_MONTH, 1);
